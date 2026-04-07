@@ -4,7 +4,7 @@ on:
   # Se ejecuta diariamente a las 3:00 AM (Europe/Madrid)
   schedule:
     - cron: "0 1 * * *"
-  # Permite ejecucion manual desde la pestaña Actions
+  # Permite ejecucion manual desde Actions > Run workflow
   workflow_dispatch:
 
 jobs:
@@ -18,11 +18,10 @@ jobs:
       - name: General metrics
         uses: lowlighter/metrics@latest
         with:
-          token: ${{ secrets.METRICS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           user: ECS-Mobility
           template: classic
           base: activity, community, repositories
-          base_indepth: yes
           config_timezone: Europe/Madrid
           config_output: svg
           config_padding: 0, 8 + 6%
@@ -32,7 +31,7 @@ jobs:
       - name: Languages metrics
         uses: lowlighter/metrics@latest
         with:
-          token: ${{ secrets.METRICS_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           user: ECS-Mobility
           template: classic
           base: ""
